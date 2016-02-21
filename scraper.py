@@ -36,7 +36,7 @@ def main():
 		for month in xrange(12, 0, -1):
 			archives.append('%s/%s' %(year, month))
 
-	for archive in ['2016/02']:
+	for archive in archives:
 		soup = BeautifulSoup(urllib.urlopen(base_url + '/comics/archive/' + archive).read(), 'html.parser')
 		comics = soup.select('.past-week-comic-title')
 
