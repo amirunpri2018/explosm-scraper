@@ -44,7 +44,10 @@ def main():
 			link = base_url + comic.a['href']
 			comic_soup = BeautifulSoup(urllib.urlopen(link).read(), 'html.parser')
 			img_link = 'http:' + comic_soup.find('img', id='main-comic')['src']
-			name = img_link[img_link.rfind('/') + 1:]
+			if not img_link.rfind('?') == -1:
+				name = img_link[img_link.rfind('/') + 1 : img_link.rfind('?')]
+			else:
+				name = img_link[img_link.rfind('/') + 1:]
 
 			if not os.path.exists(cwd + '/images/' + name):
 				print 'Downloading image - ' + name
